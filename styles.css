@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #ffe6e6;
+    color: #ff4081;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.container {
+    position: relative;
+    z-index: 2; /* Ensure this is above the confetti */
+    padding: 20px;
+    visibility: hidden; /* Hide initially */
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Smooth fade-in effect */
+}
+
+.container.visible {
+    visibility: visible; /* Make visible */
+    opacity: 1;          /* Fully opaque */
+}
+
+h1, p {
+    margin-bottom: 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center;    /* Align items vertically */
+    gap: 20px;              /* Reduce spacing between the elements */
+    margin-top: 20px;
+}
+
+.cake, .profile-pic {
+    transition: transform 0.5s ease-in-out;
+}
+
+.cake.tilt-left {
+    animation: tilt-left 1s infinite alternate;
+}
+
+.profile-pic.tilt-right {
+    animation: tilt-right 1s infinite alternate;
+}
+
+@keyframes tilt-left {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-15deg);
+    }
+}
+
+@keyframes tilt-right {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(15deg);
+    }
+}
+
+.start-button {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    z-index: 3; /* Ensure it's above the canvas */
+}
+
+.start-button:hover {
+    background-color: #e0356b;
+}
+
+/* Ensure the canvas is in the background */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Send canvas to the back */
+}
+
+/* Make the profile picture round */
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Makes the image round */
+    object-fit: cover;  /* Ensures the image fits the circle properly */
+    border: 3px solid #ff4081; /* Optional: adds a border around the profile picture */
+}
